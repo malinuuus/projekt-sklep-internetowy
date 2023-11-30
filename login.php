@@ -37,7 +37,7 @@ if (isset($_SESSION["success"])) {
 
 <div>
     <?php
-    require_once "header.php";
+    //require_once "header.php";
     $redirect = isset($_GET["redirect"]) ? $_GET["redirect"] : "../index.php";
     ?>
     <div class="card-body">
