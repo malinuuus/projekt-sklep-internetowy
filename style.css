@@ -5,18 +5,40 @@
     box-sizing: border-box;
 
 }
-body{background-color: white}
+body{
+    background-color: white;
+
+}
 #wrapper {
     max-width: 1000px;
     margin: 0 auto;
     background-color: aliceblue;
 
 }
+
 nav {
-    padding: 0;
     background-color: pink;
+    display: flex;
+    justify-content: space-between;
 }
-nav a {
+ul {
+    display: flex;
+    list-style-type: none;
+
+}
+ul li {
+    padding: 10px;
+}
+
+ul li a {
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+div p {
+    position: relative;
+    left: 50px;
+    top: 50px;
 
 }
 a.menu {
@@ -28,5 +50,6 @@ a.menu {
     text-align: center;
 }
 a.menu:hover {
-    background-color: hotpink;
+    background-color: lightpink;
 }
+

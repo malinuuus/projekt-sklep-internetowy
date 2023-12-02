@@ -1,21 +1,26 @@
+<?php
+session_start();
+require_once "header.php";
+?>
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>METZ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg-dark hold-transition login-page text-light">
 
-<div id="wrapper">
-    <nav>
-        <a class="menu active" href="#">KOBIETY</a>
-        <a class="menu" href="#">MĘŻCZYŹNI</a>
-    </nav>
-</div>
+<nav>
+    <ul>
+        <li><a class="menu active" href="#">KOBIETY</a></li>
+        <li><a class="menu" href="#">MĘŻCZYŹNI</a></li>
+    </ul>
+</nav>
+
 <?php
 
 $dbname = "sklep_db";
@@ -24,27 +29,18 @@ $stmt = $pdo->prepare("SELECT * FROM products");
 $stmt->execute();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
 foreach ($products as $product) {
     echo <<< PRODUCT
             <div>
-            
                 <p>{$product['name']}</p>
+                <p>{$product['color']}</p>
                 <p>{$product['price']}</p>
-                <p>{$product['size']}</p>
-                
-               
-                
+
             </div>
 PRODUCT;
-    }
+}
+
 ?>
-
-
-
-
-
-
 
 
 </body>
