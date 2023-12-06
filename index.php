@@ -38,11 +38,14 @@ foreach ($products as $product) {
                 <div class="img">
                   <img src="{$product['photo']}" alt=""  >
                 </div>
-                <div class="text"></div>
+                <div class="text">
                   <h5>{$product['name']} </h5>
                   <p>{$product['color']}</p>
                   <p>{$product['price']}</p>
+                </div>
+                <div class="button">
                   <button>Dodaj do koszyka</button>
+                </div>
                 </div>
               </div>
             </div>
