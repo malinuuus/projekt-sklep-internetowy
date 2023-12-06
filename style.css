@@ -9,18 +9,63 @@ body{
     background-color: white;
 
 }
+
+
 #wrapper {
-    max-width: 1000px;
+    width: 1000px;
     margin: 0 auto;
     background-color: aliceblue;
+
 
 }
 
 nav {
-    background-color: pink;
+    background-color: lightpink;
     display: flex;
     justify-content: space-between;
 }
+
+
+.container{
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    place-items: flex-start;
+    height: 100vh;
+    margin: auto;
+    padding: 50px;
+
+}
+
+.box{
+    background: grey;
+    text-align: center;
+
+}
+
+.container img{
+    width:250px;
+}
+
+.text{
+    padding: 20px;
+}
+
+.button{
+    background-color: pink;
+    padding:10px;
+
+}
+
+button{
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+}
+
 ul {
     display: flex;
     list-style-type: none;
@@ -35,12 +80,7 @@ ul li a {
     text-transform: uppercase;
 }
 
-div p {
-    position: relative;
-    left: 50px;
-    top: 50px;
 
-}
 a.menu {
     display: inline;
     width: 25%;
@@ -52,4 +92,3 @@ a.menu {
 a.menu:hover {
     background-color: lightpink;
 }
-

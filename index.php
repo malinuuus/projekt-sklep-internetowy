@@ -21,6 +21,7 @@ require_once "header.php";
     </ul>
 </nav>
 
+
 <?php
 
 $dbname = "sklep_db";
@@ -29,19 +30,30 @@ $stmt = $pdo->prepare("SELECT * FROM products");
 $stmt->execute();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+
 foreach ($products as $product) {
     echo <<< PRODUCT
-            <div>
-                <p>{$product['name']}</p>
-                <p>{$product['color']}</p>
-                <p>{$product['price']}</p>
-
+            <div class="container">
+              <div class="box">
+                <div class="img">
+                  <img src="{$product['photo']}" alt=""  >
+                </div>
+                <div class="text"></div>
+                  <h5>{$product['name']} </h5>
+                  <p>{$product['color']}</p>
+                  <p>{$product['price']}</p>
+                  <button>Dodaj do koszyka</button>
+                </div>
+              </div>
             </div>
+
+                  
+
 PRODUCT;
 }
 
-?>
 
+?>
 
 </body>
 </html>
