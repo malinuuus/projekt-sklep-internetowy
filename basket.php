@@ -12,7 +12,6 @@ session_start();
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-dark hold-transition login-page text-light">
-
     <h1>Twój koszyk</h1>
     <?php
     $pdo = new PDO("mysql:host=localhost;dbname=sklep_db", "root", "");
@@ -26,17 +25,27 @@ session_start();
             $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
             echo <<< PRODUCT
-            <div class="container">
-                <img src="{$product['photo']}" alt="{$product['name']}">
-                <p>{$product['name']}</p>
-                <p>{$product['price']}</p>
-            </div>
-        PRODUCT;
+                <div class="container">
+                    <img src="{$product['photo']}" alt="{$product['name']}">
+                    <p>{$product['name']}</p>
+                    <p>{$product['price']}</p>
+                    <form action="scripts/deleteFromBasket.php" method="post">
+                        <input type="hidden" name="product_id" value="{$product['id']}">
+                        <button>usuń</button>
+                    </form>
+                </div>
+            PRODUCT;
         }
     } else {
         echo "<p>Brak przedmiotów w koszyku</p>";
     }
     ?>
-    <a href="order.php">Płacę</a>
+    <div class="row my-3">
+        <div class="col">
+            <form action="order.php" method="get">
+                <button type="submit" class="btn btn-primary btn-block">Płacę</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

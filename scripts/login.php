@@ -29,7 +29,7 @@ if ($stmt->rowCount() == 0) {
         $_SESSION["user_id"] = $user["id"];
 
         if ($user['is_admin']) {
-            echo "admin";
+            header("location: ../admin.php");
         } else {
             $redirect = isset($_GET["redirect"]) ? $_GET["redirect"] : "../index.php";
             header("location: $redirect");
