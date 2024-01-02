@@ -45,6 +45,8 @@ if (isset($_SESSION["success"])) {
         <form class="container p-3" action="./scripts/login.php?redirect=<?php echo $redirect; ?>" method="post">
             <h3 class="login-box-msg mb-4">Logowanie</h3>
 
+
+
             <div class="my-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" placeholder="Podaj email" name="email" id="email">

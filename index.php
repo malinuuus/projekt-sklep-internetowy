@@ -18,11 +18,29 @@ require_once "header.php";
     <ul>
         <li><a class="menu active" href="#">KOBIETY</a></li>
         <li><a class="menu" href="#">MĘŻCZYŹNI</a></li>
+
     </ul>
 </nav>
 
 
 <?php
+
+if (isset($_SESSION['error'])) {
+    echo <<< ERROR
+        <div>
+            <p>{$_SESSION['error']}</p>
+        </div>
+    ERROR;
+    unset($_SESSION['error']);
+}
+if (isset($_SESSION['success'])) {
+    echo <<< ERROR
+        <div>
+            <p>{$_SESSION['success']}</p>
+        </div>
+    ERROR;
+    unset($_SESSION['success']);
+}
 
 $dbname = "sklep_db";
 $pdo = new PDO("mysql:host=localhost;dbname={$dbname}", "root", "");
@@ -44,7 +62,10 @@ foreach ($products as $product) {
                   <p>{$product['price']}</p>
                 </div>
                 <div class="button">
-                  <button>Dodaj do koszyka</button>
+                   <form action="scripts/addToBasket.php" method="post">
+                    <input type="hidden" name="product_id" value="{$product['id']}">
+                    <button type="submit">Dodaj do koszyka</button>
+                   </form>
                 </div>
                 </div>
               </div>
