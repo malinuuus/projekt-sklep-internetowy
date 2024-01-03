@@ -1,7 +1,8 @@
 
 <nav class="bg-black d-flex justify-content-between align-items-center p-3">
-    <a href="./index.php" class="d-inline-block"><h3>logo</h3></a>
-    <h2>METZ shoes</h2>
+    <a href="./index.php" class="d-inline-block">
+        <img src="logo.webp" alt="">
+    </a>
 
     <div class="nav-item p-3 d-flex">
         <a href='basket.php' class='nav-link px-2'>Koszyk</a>

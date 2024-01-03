@@ -44,34 +44,34 @@ if (isset($_SESSION["success"])) {
 
             <div class="my-3">
                 <label for="street" class="form-label">Ulica</label>
-                    <input type="text" class="form-control" placeholder="Podaj ulicę">
+                <input type="text" class="form-control" placeholder="Podaj ulicę" name="street">
 
             </div>
 
             <div class="my-3">
                 <label for="number" class="form-label">Numer domu</label>
-                <input type="text" class="form-control" placeholder="Podaj numer domu">
+                <input type="text" class="form-control" placeholder="Podaj numer domu" name="number">
             </div>
 
 
             <div class="my-3">
-                <label for="kod_pocztowy" class="form-label">Kod pocztowy</label>
-                <input type="text" class="form-control" placeholder="Podaj kod pocztowy">
+                <label for="postal_code" class="form-label">Kod pocztowy</label>
+                <input type="text" class="form-control" placeholder="Podaj kod pocztowy" name="postal_code">
             </div>
 
             <div class="my-3">
                 <label for="city" class="form-label">Miasto</label>
-                <input type="text" class="form-control" placeholder="Podaj miasto">
+                <input type="text" class="form-control" placeholder="Podaj miasto" name="city">
             </div>
 
             <div class="my-3">
                 <label for="country" class="form-label">Kraj</label>
-                <input type="text" class="form-control" placeholder="Podaj kraj">
+                <input type="text" class="form-control" placeholder="Podaj kraj" name="country">
             </div>
 
             <div class="my-3">
-                <label for="phonenumber" class="form-label">Telefon</label>
-                <input type="text" class="form-control" placeholder="Podaj numer telefonu">
+                <label for="phone_number" class="form-label">Telefon</label>
+                <input type="text" class="form-control" placeholder="Podaj numer telefonu" name="phone_number">
             </div>
 
             <div class="row my-3">
@@ -79,6 +79,7 @@ if (isset($_SESSION["success"])) {
                     <button type="submit" class="btn btn-primary btn-block">Zamów i zapłać</button>
                 </div>
             </div>
+        </form>
     </div>
 </body>
 </html>

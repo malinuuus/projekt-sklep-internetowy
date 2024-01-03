@@ -29,31 +29,31 @@ session_start()
         <div class="bg-dark text-light">
             <div class="card-body">
                 <h4 class="login-box-msg ml-4">METODY PŁATNOŚCI</h4>
-                <form action="summary.php" method="post">
+                <form action="scripts/order.php" method="post">
 
                     <div class="form-check my-3">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="gridRadios1" value="blik">
                         <label class="form-check-label" for="gridRadios1">
                             BLIK
                         </label>
                     </div>
 
                     <div class="form-check my-3">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="gridRadios2" value="card">
                         <label class="form-check-label" for="gridRadios2">
                             karta płatnicza
                         </label>
                     </div>
 
                     <div class="form-check my-3">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="gridRadios3" value="transfer">
                         <label class="form-check-label" for="gridRadios3">
                             szybki przelew
                         </label>
                     </div>
 
                     <div class="form-check my-3">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios4" value="option4">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="gridRadios4" value="paypal">
                         <label class="form-check-label" for="gridRadios4">
                             PAYPAL
                         </label>

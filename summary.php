@@ -15,6 +15,6 @@ session_start();
 <?php
 require_once "header.php";
 ?>
-<h4 align="center">DZIĘKUJEMY ZA ZAKUPY</h4>
+<h4>DZIĘKUJEMY ZA ZAKUPY</h4>
 </body>
 </html>
