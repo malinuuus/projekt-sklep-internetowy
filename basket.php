@@ -1,5 +1,11 @@
 <?php
 session_start();
+$sesjaAktywna = isset($_SESSION['user_id']);
+if($sesjaAktywna) {
+    $statusPrzycisku = '';
+}else {
+    $statusPrzycisku = 'disabled';
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -84,7 +90,7 @@ if (isset($_SESSION['basket']) && sizeof($_SESSION['basket']) > 0) {
 <div class="row my-3">
     <div class="col">
         <a href="order.php">
-            <button type="submit" class="btn btn-primary btn-block">Płacę</button>
+            <button type="submit" class="btn btn-primary btn-block"<?php echo $statusPrzycisku; ?>>Płacę</button>
         </a>
     </div>
 </div>
