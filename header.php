@@ -5,14 +5,16 @@
     </a>
 
     <div class="nav-item p-3 d-flex">
-        <a href='basket.php' class='nav-link px-2'>Koszyk</a>
+        <a href='basket.php' class='nav-link px-2'>
+            <i class="uil uil-shopping-basket"></i>
+        </a>
         <?php
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
 
         if (isset($_SESSION["user_id"])) {
-
+            echo "<i ></i>";
             echo "<a href='./scripts/logout.php' class='nav-link px-2'>Wyloguj się</a>";
         }else{
             echo "<a href='login.php' class='nav-link px-2'>Zaloguj się</a>";
