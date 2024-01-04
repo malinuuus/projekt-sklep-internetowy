@@ -96,17 +96,8 @@ if (isset($_SESSION["success"])) {
     ERROR;
     unset($_SESSION["success"]);
 }
-
-
-
-
 ?>
 
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 22e21c49c35bc8d602a2635ae8b2adc7a674f274
 <div class="container">
     <div class="img">
         <img src="<?php echo $product['photo']; ?>" alt="">
