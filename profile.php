@@ -17,7 +17,7 @@ require_once "header.php";
 
 <?php
 
-if (isset($_SESSION['error'])) {
+/*if (isset($_SESSION['error'])) {
     echo <<< ERROR
         <div>
             <p>{$_SESSION['error']}</p>
@@ -32,29 +32,29 @@ if (isset($_SESSION['success'])) {
         </div>
     ERROR;
     unset($_SESSION['success']);
-}
+}*/
 
 require_once "scripts/dbConnect.php";
 
-$stmt = $pdo->prepare("SELECT * FROM users");
-$stmt->execute();
-$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//$userId=$_SESSION['userId'];
+$stmt = $pdo->prepare("SELECT id, first_name, last_name, email FROM users WHERE id= :id");
+$stmt->execute(['id']);
+$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-echo "<div class='products'>";
-foreach ($users as $user) {
+if($user) {
     echo <<< USER
-            <a href="user.php?id=$user[id]" class="user">
+        <a href="user.php?id={$user['id']}" class="user">
+            <div class="user">
                 <div class="text">
                   <h5>{$user['first_name']} </h5>
                   <h5>{$user['last_name']} </h5>
                   <h5>{$user['email']} </h5>
-                  <h5>{$user['password']} </h5>
                 </div>
-              </a>
+            </div>
+        </a>
         USER;
-}
-echo "</div>";
 
+}
 ?>
 
 </body>
