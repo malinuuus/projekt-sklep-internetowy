@@ -39,7 +39,7 @@ if (isset($_SESSION["success"])) {
 <div>
     <?php require_once "header.php"; ?>
     <div class="card-body">
-        <form action="payment.php" method="post" class="p-3 mx-5">
+        <form action="scripts/checkAddress.php" method="post" class="p-3 mx-5">
             <h3 class="login-box-msg mb-4">Finalizacja zamówienia</h3>
 
             <div class="my-3">

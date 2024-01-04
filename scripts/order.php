@@ -18,6 +18,10 @@ foreach ($_SESSION['basket'] as $basketProductId) {
     ]);
 }
 
+print_r($_POST);
+
+
+
 unset($_SESSION['basket']);
 header("location: ../summary.php");
 ?>

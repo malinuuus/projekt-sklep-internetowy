@@ -46,10 +46,6 @@ nav {
 
 }
 
-.container img{
-    width:250px;
-}
-
 
 .text{
     padding: 20px;
@@ -94,4 +90,8 @@ a.menu {
 }
 a.menu:hover {
     background-color: lightpink;
+}
+
+.products img {
+    width: 50px;
 }

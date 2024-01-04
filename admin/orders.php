@@ -49,8 +49,9 @@ require_once "menu.php";
         $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
         foreach ($orders as $order) {
             $stmt = $pdo->prepare("
-                SELECT p.id, p.name, p.price, b.name AS brand FROM product_orders o
-                INNER JOIN products p ON o.product_id = p.id
+                SELECT p.id, p.name, p.price, b.name AS brand, v.size FROM variant_orders o
+                INNER JOIN variants v ON o.variant_id = v.id
+                INNER JOIN products p ON v.product_id = p.id
                 INNER JOIN brands b ON p.brand_id = b.id
                 WHERE order_id = :orderId
             ");
@@ -78,7 +79,7 @@ require_once "menu.php";
                     <div>
                       <p>Nazwa produktu: {$product['brand']} {$product['name']}</p>
                       <p>Cena: {$product['price']}</p>
-                      <p>Rozmiar:</p>
+                      <p>Rozmiar: {$product['size']}</p>
                     </div>
                 PRODUCT;
             }
