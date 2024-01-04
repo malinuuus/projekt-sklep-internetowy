@@ -26,8 +26,8 @@ function sendEmail(string $toEmail, string $subject, string $body)
         $mail->CharSet = "UTF-8";
 
         //Recipients
-        $mail->setFrom('malinyt236@gmail.com', 'Mailer');
-        $mail->addAddress('tomasz.malinowski1812@gmail.com');     //Add a recipient
+        $mail->setFrom('malinyt236@gmail.com', 'METZ Shoes');
+        $mail->addAddress($toEmail);     //Add a recipient
 
         //Attachments
         /*    $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments

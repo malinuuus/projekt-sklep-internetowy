@@ -7,8 +7,7 @@ checkUser(false);
         <div class="logo-image">
             <img src="images/logo.png" alt="">
         </div>
-
-        <span class="logo_name">CodingLab</span>
+        <span class="logo_name">METZ Shoes</span>
     </div>
 
     <div class="menu-items">

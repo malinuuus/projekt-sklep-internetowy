@@ -87,7 +87,10 @@ require_once "menu.php";
                     </div>
                 PRODUCT;
             }
+
+            echo '<hr>';
         }
+
         ?>
     </div>
 </section>
