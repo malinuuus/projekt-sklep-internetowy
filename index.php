@@ -14,7 +14,23 @@ require_once "header.php";
     <style>
         .product {
             display: block;
-            width: 40px;
+            width: 200px;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .products {
+            margin: 50px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 50px;
+            justify-items: center;
         }
     </style>
 </head>
@@ -64,8 +80,7 @@ foreach ($products as $product) {
                 </div>
                 <div class="text">
                   <h5>{$product['name']} </h5>
-                  <p>{$product['color']}</p>
-                  <p>{$product['price']}</p> 
+                  <p>{$product['price']} zł</p>
                 </div>
               </div>
               </a>

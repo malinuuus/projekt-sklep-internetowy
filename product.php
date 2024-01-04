@@ -34,7 +34,24 @@ $variants = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body class="bg-dark hold-transition login-page text-light">
 
 <div class="container">
+    <a href="product.php?id=$product[id]" class="product">
+        <div class="box">
+            <div class="img">
+                <img src="<?php echo $product['photo'];?>" alt=""  >
+            </div>
+            <div class="text">
+                <h5><?php echo $product['name'];?></h5>
+                <p><?php echo $product['color'];?></p>
+                <p><?php echo $product['price']?></p>
+            </div>
+            <ul>
+                <?php foreach($variants as $variant): ?>
+                  <li><?php echo $variant['size'];?></li>
+                <?php endforeach; ?>
+            </ul>
 
+        </div>
+    </a>
 
 
 </div>
