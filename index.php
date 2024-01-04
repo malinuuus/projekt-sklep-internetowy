@@ -67,8 +67,8 @@ if (isset($_SESSION['success'])) {
     unset($_SESSION['success']);
 }
 
-$dbname = "sklep_db";
-$pdo = new PDO("mysql:host=localhost;dbname={$dbname}", "root", "");
+require_once "scripts/dbConnect.php";
+
 $stmt = $pdo->prepare("SELECT * FROM products");
 $stmt->execute();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);

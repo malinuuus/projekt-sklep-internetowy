@@ -14,7 +14,7 @@
         }
 
         if (isset($_SESSION["user_id"])) {
-            echo "<i ></i>";
+            echo "<a href='profile.php' class='nav-link px-2'>Moje konto</a>";
             echo "<a href='./scripts/logout.php' class='nav-link px-2'>Wyloguj się</a>";
         }else{
             echo "<a href='login.php' class='nav-link px-2'>Zaloguj się</a>";

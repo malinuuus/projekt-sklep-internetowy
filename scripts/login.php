@@ -9,8 +9,7 @@ foreach ($_POST as $key => $value) {
     }
 }
 
-$dbname = "sklep_db";
-$pdo = new PDO("mysql:host=localhost;dbname={$dbname}", "root", "");
+require_once "scripts/dbConnect.php";
 
 $sql = "SELECT id, password, is_admin FROM users WHERE email = :email";
 $stmt = $pdo->prepare($sql);

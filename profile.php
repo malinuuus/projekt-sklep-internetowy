@@ -15,6 +15,47 @@ require_once "header.php";
 
 <h2>Mój profil</h2>
 
+<?php
+
+if (isset($_SESSION['error'])) {
+    echo <<< ERROR
+        <div>
+            <p>{$_SESSION['error']}</p>
+        </div>
+    ERROR;
+    unset($_SESSION['error']);
+}
+if (isset($_SESSION['success'])) {
+    echo <<< ERROR
+        <div>
+            <p>{$_SESSION['success']}</p>
+        </div>
+    ERROR;
+    unset($_SESSION['success']);
+}
+
+require_once "scripts/dbConnect.php";
+
+$stmt = $pdo->prepare("SELECT * FROM users");
+$stmt->execute();
+$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+echo "<div class='products'>";
+foreach ($users as $user) {
+    echo <<< USER
+            <a href="user.php?id=$user[id]" class="user">
+                <div class="text">
+                  <h5>{$user['first_name']} </h5>
+                  <h5>{$user['last_name']} </h5>
+                  <h5>{$user['email']} </h5>
+                  <h5>{$user['password']} </h5>
+                </div>
+              </a>
+        USER;
+}
+echo "</div>";
+
+?>
 
 </body>
 </html>

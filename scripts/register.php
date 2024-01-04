@@ -36,9 +36,8 @@ if ($error != 0) {
     exit();
 }
 
-// require_once "./connect.php";
+require_once "scripts/dbConnect.php";
 
-$pdo = new PDO("mysql:host=localhost;dbname=sklep_db", "root", "");
 $sql = "SELECT * FROM users WHERE email = :email";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([
@@ -52,8 +51,7 @@ if ($stmt->rowCount() != 0) {
 }
 
 $pass = password_hash($_POST["pass1"], PASSWORD_DEFAULT);
-$dbname = "sklep_db";
-$pdo = new PDO("mysql:host=localhost;dbname={$dbname}", "root", "");
+
 $stmt = $pdo->prepare("INSERT INTO `users` (`first_name`, `last_name`, `email`, `password`) VALUES (:first_name, :last_name, :email, :password);");
 $stmt->execute([
     'first_name' => $_POST['first_name'],
