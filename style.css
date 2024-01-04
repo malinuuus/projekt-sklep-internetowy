@@ -35,10 +35,9 @@ nav {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
     place-items: flex-start;
-    height: 100vh;
+    height: 10vh;
     margin: auto;
     padding: 50px;
-
 }
 
 .box{
