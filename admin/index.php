@@ -17,6 +17,16 @@
 <body>
 <?php
 require_once "menu.php";
+require_once "../scripts/dbConnect.php";
+$stmt = $pdo->prepare("SELECT COUNT(*) as allProducts FROM products ");
+$stmt->execute();
+$products = $stmt->fetch(PDO::FETCH_ASSOC);
+$allProducts = $products['allProducts'];
+
+$stmt = $pdo->prepare("select count(*) as allQuantity from orders");
+$stmt->execute();
+$product_orders = $stmt->fetch(PDO::FETCH_ASSOC);
+$allQuantity = $product_orders['allQuantity'];
 ?>
 
 <section class="dashboard">
@@ -25,7 +35,7 @@ require_once "menu.php";
 
         <div class="search-box">
             <i class="uil uil-search"></i>
-            <input type="text" placeholder="Search here...">
+            <input type="text" placeholder="Wyszukaj...">
         </div>
 
         <!--<img src="images/profile.jpg" alt="">-->
@@ -35,23 +45,23 @@ require_once "menu.php";
         <div class="overview">
             <div class="title">
                 <i class="uil uil-tachometer-fast-alt"></i>
-                <span class="text">Dashboard</span>
+                <span class="text">Panel administratora</span>
             </div>
 
             <div class="boxes">
                 <div class="box box1">
-                    <i class="uil uil-thumbs-up"></i>
-                    <span class="text">Total Likes</span>
-                    <span class="number">50,120</span>
+                    <i class="uil uil-shopping-bag"></i>
+                    <span class="text">Ilość zamówień</span>
+                    <span class="number"><?php echo $allQuantity; ?></span>
                 </div>
                 <div class="box box2">
-                    <i class="uil uil-comments"></i>
-                    <span class="text">Comments</span>
-                    <span class="number">20,120</span>
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="text">Ilość produktów</span>
+                    <span class="number"><?php echo $allProducts;?></span>
                 </div>
                 <div class="box box3">
-                    <i class="uil uil-share"></i>
-                    <span class="text">Total Share</span>
+                    <i class="uil uil-smile"></i>
+                    <span class="text">Zadowoleni klienci</span>
                     <span class="number">10,120</span>
                 </div>
             </div>

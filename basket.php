@@ -1,11 +1,5 @@
 <?php
 session_start();
-$sesjaAktywna = isset($_SESSION['user_id']);
-if($sesjaAktywna) {
-    $statusPrzycisku = '';
-}else {
-    $statusPrzycisku = 'disabled';
-}
 ?>
 <!doctype html>
 <html lang="en">
@@ -33,22 +27,25 @@ if($sesjaAktywna) {
 <body class="bg-dark hold-transition login-page text-light">
 <?php
 require_once "header.php";
+require_once "scripts/dbConnect.php";
 ?>
 <h1>Twój koszyk</h1>
 <?php
-$pdo = new PDO("mysql:host=localhost;dbname=sklep_db", "root", "");
+$btnActive = false;
 
 if (isset($_SESSION['basket']) && sizeof($_SESSION['basket']) > 0) {
+    if (isset($_SESSION['user_id'])) {
+        $btnActive = true;
+    }
+
     echo "<table class='products-table'>";
     $sum = 9.9;
 
-    foreach ($_SESSION['basket'] as $basketProductId) {
-        $stmt = $pdo->prepare("SELECT * FROM products WHERE id = :id");
+    foreach ($_SESSION['basket'] as $basketVariantId) {
+        $stmt = $pdo->prepare("SELECT v.id, v.size, p.name, p.photo, p.price FROM products p INNER JOIN variants v ON p.id = v.product_id WHERE v.id = :variantId");
         $stmt->execute([
-            'id' => $basketProductId
+            'variantId' => $basketVariantId
         ]);
-
-        // if ($stmt->rowCount() == 0) continue;
 
         $product = $stmt->fetch(PDO::FETCH_ASSOC);
         $sum += $product['price'];
@@ -58,7 +55,7 @@ if (isset($_SESSION['basket']) && sizeof($_SESSION['basket']) > 0) {
                     <td>
                         <img src="{$product['photo']}" alt="{$product['name']}">                    
                     </td>
-                    <td>{$product['name']}</td>
+                    <td>{$product['name']} | {$product['size']}</td>
                     <td>{$product['price']}</td>
                     <td>
                         <form action="scripts/deleteFromBasket.php" method="post">
@@ -89,13 +86,9 @@ if (isset($_SESSION['basket']) && sizeof($_SESSION['basket']) > 0) {
 ?>
 <div class="row my-3">
     <div class="col">
-        <?php if ($sesjaAktywna && $_SESSION['basket']): ?>
-        <a href="order.php">
-            <button type="submit" class="btn btn-primary btn-block">Płacę</button>
+        <a href="<?php echo $btnActive ? 'order.php' : '#' ?>">
+            <button type="submit" class="btn btn-primary btn-block" <?php echo $btnActive ? '' : 'disabled' ?>>Płacę</button>
         </a>
-       <?php else: ?>
-            <button type="button" class="btn btn-primary btn-block" disabled>Płacę</button>
-        <?php endif; ?>
     </div>
 </div>
 </body>

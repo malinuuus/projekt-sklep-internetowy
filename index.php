@@ -17,6 +17,7 @@ require_once "header.php";
             width: 200px;
             text-decoration: none;
             color: #000;
+            background: #707070;
         }
 
         .product img {
@@ -74,7 +75,6 @@ echo "<div class='products'>";
 foreach ($products as $product) {
     echo <<< PRODUCT
             <a href="product.php?id=$product[id]" class="product">
-              <div class="box">
                 <div class="img">
                   <img src="{$product['photo']}" alt=""  >
                 </div>
@@ -82,7 +82,6 @@ foreach ($products as $product) {
                   <h5>{$product['name']} </h5>
                   <p>{$product['price']} zł</p>
                 </div>
-              </div>
               </a>
         PRODUCT;
 }

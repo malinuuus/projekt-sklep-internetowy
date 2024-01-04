@@ -11,7 +11,7 @@
         <ul class="nav-links">
             <li><a href="index.php">
                     <i class="uil uil-estate"></i>
-                    <span class="link-name">Dashboard</span>
+                    <span class="link-name">Panel administratora</span>
                 </a></li>
             <li><a href="products.php">
                     <i class="uil uil-files-landscapes"></i>
@@ -21,18 +21,7 @@
                     <i class="uil uil-chart"></i>
                     <span class="link-name">Zamówienia</span>
                 </a></li>
-            <li><a href="#">
-                    <i class="uil uil-thumbs-up"></i>
-                    <span class="link-name">Like</span>
-                </a></li>
-            <li><a href="#">
-                    <i class="uil uil-comments"></i>
-                    <span class="link-name">Comment</span>
-                </a></li>
-            <li><a href="#">
-                    <i class="uil uil-share"></i>
-                    <span class="link-name">Share</span>
-                </a></li>
+
         </ul>
 
         <ul class="logout-mode">
