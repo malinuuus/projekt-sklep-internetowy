@@ -9,10 +9,10 @@ $stmt->execute([
 ]);
 $orderId = $pdo->lastInsertId();
 
-foreach ($_SESSION['basket'] as $basketProductId) {
-    $stmt = $pdo->prepare("INSERT INTO product_orders (product_id, order_id, quantity) VALUES (:productId, :orderId, :quantity)");
+foreach ($_SESSION['basket'] as $basketVariantId) {
+    $stmt = $pdo->prepare("INSERT INTO variant_orders (variant_id, order_id, quantity) VALUES (:variantId, :orderId, :quantity)");
     $stmt->execute([
-        'productId' => $basketProductId,
+        'variantId' => $basketVariantId,
         'orderId' => $orderId,
         'quantity' => 1
     ]);
