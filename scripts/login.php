@@ -9,7 +9,7 @@ foreach ($_POST as $key => $value) {
     }
 }
 
-require_once "scripts/dbConnect.php";
+require_once "dbConnect.php";
 
 $sql = "SELECT id, password, is_admin FROM users WHERE email = :email";
 $stmt = $pdo->prepare($sql);

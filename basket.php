@@ -36,7 +36,9 @@ $btnActive = false;
 if (isset($_SESSION['basket']) && sizeof($_SESSION['basket']) > 0) {
     if (isset($_SESSION['user_id'])) {
         $btnActive = true;
+
     }
+
 
     echo "<table class='products-table'>";
     $sum = 9.9;
@@ -80,6 +82,8 @@ if (isset($_SESSION['basket']) && sizeof($_SESSION['basket']) > 0) {
         </tr>
         </table>
     TABLE;
+
+
 } else {
     echo "<p>Brak przedmiotów w koszyku</p>";
 }
