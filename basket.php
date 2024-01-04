@@ -89,9 +89,13 @@ if (isset($_SESSION['basket']) && sizeof($_SESSION['basket']) > 0) {
 ?>
 <div class="row my-3">
     <div class="col">
+        <?php if ($sesjaAktywna && $_SESSION['basket']): ?>
         <a href="order.php">
-            <button type="submit" class="btn btn-primary btn-block"<?php echo $statusPrzycisku; ?>>Płacę</button>
+            <button type="submit" class="btn btn-primary btn-block">Płacę</button>
         </a>
+       <?php else: ?>
+            <button type="button" class="btn btn-primary btn-block" disabled>Płacę</button>
+        <?php endif; ?>
     </div>
 </div>
 </body>
