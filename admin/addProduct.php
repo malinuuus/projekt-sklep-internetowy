@@ -1,5 +1,6 @@
 <?php
-
+require_once "../scripts/checkAuth.php";
+checkUser(false);
 ?>
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->

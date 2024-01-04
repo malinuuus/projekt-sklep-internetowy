@@ -34,7 +34,7 @@ require_once "scripts/dbConnect.php";
 $btnActive = false;
 
 if (isset($_SESSION['basket']) && sizeof($_SESSION['basket']) > 0) {
-    if (isset($_SESSION['user_id'])) {
+    if (isset($_SESSION['user']['id'])) {
         $btnActive = true;
     }else{
         echo "<p>Przed zakupem należy sie zalogować!</p>";
@@ -93,5 +93,6 @@ if (isset($_SESSION['basket']) && sizeof($_SESSION['basket']) > 0) {
         </a>
     </div>
 </div>
+<script src="./js/closeAlert.js"></script>
 </body>
 </html>

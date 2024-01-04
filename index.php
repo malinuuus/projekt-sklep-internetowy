@@ -90,6 +90,6 @@ foreach ($products as $product) {
 echo "</div>";
 
 ?>
-
+<script src="./js/closeAlert.js"></script>
 </body>
 </html>

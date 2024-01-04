@@ -1,5 +1,7 @@
 <?php
-session_start()
+require_once "scripts/checkAuth.php";
+checkUser(true);
+checkBasket();
 ?>
 <!doctype html>
 <html lang="en">
@@ -67,5 +69,6 @@ session_start()
             </div>
         </div>
         <script src="./js/closeAlert.js"></script>
+
 </body>
 </html>

@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once "header.php";
 require_once "scripts/dbConnect.php";
 
 $stmt = $pdo->prepare("
@@ -72,6 +71,8 @@ $variants = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body class="bg-dark hold-transition login-page text-light">
 <?php
+require_once "header.php";
+
 if (isset($_SESSION["error"])) {
     echo <<< ERROR
        <div class="fixed-top alert alert-danger alert-dismissible m-3"> 
@@ -94,6 +95,8 @@ if (isset($_SESSION["success"])) {
     unset($_SESSION["success"]);
 }
 ?>
+
+
 <div class="container">
     <div class="img">
         <img src="<?php echo $product['photo']; ?>" alt="">
@@ -122,5 +125,6 @@ if (isset($_SESSION["success"])) {
         </div>
     </form>
 </div>
+<script src="./js/closeAlert.js"></script>
 </body>
 </html>

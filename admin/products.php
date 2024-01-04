@@ -1,6 +1,6 @@
 <?php
 require_once "../scripts/checkAuth.php";
-checkIfAdmin();
+checkUser(false);
 ?>
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->

@@ -1,6 +1,6 @@
 <?php
 require_once "../scripts/checkAuth.php";
-checkIfAdmin();
+checkUser(false);
 ?>
 <nav>
     <div class="logo-name">
