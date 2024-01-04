@@ -9,6 +9,7 @@ session_start();
     <title>Koszyk</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="style.css">
     <style>
         .products-table, .products-table tr {
@@ -37,7 +38,7 @@ if (isset($_SESSION['basket']) && sizeof($_SESSION['basket']) > 0) {
     if (isset($_SESSION['user']['id'])) {
         $btnActive = true;
     }else{
-        echo "<p>Przed zakupem należy sie zalogować!</p>";
+        echo "<p>Przed zakupem zaloguj się!</p>";
     }
 
 
@@ -59,7 +60,7 @@ if (isset($_SESSION['basket']) && sizeof($_SESSION['basket']) > 0) {
                         <img src="{$product['photo']}" alt="{$product['name']}">                    
                     </td>
                     <td>{$product['name']} | {$product['size']}</td>
-                    <td>{$product['price']}</td>
+                    <td>{$product['price']} zł</td>
                     <td>
                         <form action="scripts/deleteFromBasket.php" method="post">
                             <input type="hidden" name="product_id" value="{$product['id']}">

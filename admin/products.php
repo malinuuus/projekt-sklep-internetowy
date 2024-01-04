@@ -101,7 +101,7 @@ if (isset($_SESSION["success"])) {
                     <div class="text">
                         <h5>{$product['brand']} | {$product['name']}</h5>
                         <p>{$product['color']}</p>
-                        <p>{$product['price']}</p>
+                        <p>{$product['price']} zł</p>
                     </div>
                 </div>
                 <div class="options">

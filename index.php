@@ -16,7 +16,7 @@ session_start();
             display: block;
             width: 200px;
             text-decoration: none;
-            color: #000;
+            color: #fff;
             background: #707070;
         }
 
@@ -33,21 +33,42 @@ session_start();
             grid-gap: 50px;
             justify-items: center;
         }
+
+        .categories {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding-top: 10px;
+        }
+
+        .category a {
+            text-decoration: none;
+            color: #000;
+        }
     </style>
 </head>
 <body class="bg-dark hold-transition login-page text-light">
 <?php
 require_once "header.php";
+require_once "scripts/dbConnect.php";
 ?>
 <nav>
-    <ul>
-        <li><a class="menu active" href="#">KOBIETY</a></li>
-        <li><a class="menu" href="#">MĘŻCZYŹNI</a></li>
+    <ul class="categories">
+        <?php
+        $stmt = $pdo->prepare("SELECT * FROM categories");
+        $stmt->execute();
+        $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($categories as $category) {
+            echo <<< CATEGORY
+                <li class="category"><a href="#">{$category['name']}</a></li>
+            CATEGORY;
+        }
+        ?>
 
     </ul>
 </nav>
-
-
 <?php
 
 if (isset($_SESSION['error'])) {
@@ -66,8 +87,6 @@ if (isset($_SESSION['success'])) {
     ERROR;
     unset($_SESSION['success']);
 }
-
-require_once "scripts/dbConnect.php";
 
 $stmt = $pdo->prepare("SELECT * FROM products");
 $stmt->execute();

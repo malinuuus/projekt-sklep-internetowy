@@ -41,8 +41,6 @@ $allQuantity = $product_orders['allQuantity'];
             <i class="uil uil-search"></i>
             <input type="text" placeholder="Wyszukaj...">
         </div>
-
-        <!--<img src="images/profile.jpg" alt="">-->
     </div>
 
     <div class="dash-content">

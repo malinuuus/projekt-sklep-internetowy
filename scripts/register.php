@@ -59,10 +59,10 @@ $stmt->execute([
     'password' => $pass
 ]);
 
-echo $stmt->rowCount();
-
 if ($stmt->rowCount() == 1) {
     $_SESSION["success"] = "Dodano użytkownika $_POST[first_name] $_POST[last_name]";
 } else {
     $_SESSION["error"] = "Nie udało sie dodać rekordu ";
 }
+
+header("location: ../login.php");

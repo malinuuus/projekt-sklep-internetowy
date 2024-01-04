@@ -52,20 +52,35 @@ $body = "
     <table>
 ";
 
+$sum = 9.9;
+
 foreach ($products as $product) {
+    $sum += $product['price'];
     $body .= "
         <tr>
             <td>{$product['name']}</td>
             <td>{$product['size']}</td>
-            <td>{$product['price']}</td>
+            <td>{$product['price']} zł</td>
         </tr>
     ";
 }
-$body .= "</table>";
+$body .= "
+    <tr>
+        <td></td>
+        <td>Łącznie:</td>
+        <td>$sum zł</td>
+    </tr>
+    </table>
+";
+$body .= "
+    <p>Adres dostawy:</p>
+    <p>{$_SESSION['address']['street']} {$_SESSION['address']['number']},</p>
+    <p>{$_SESSION['address']['postal_code']} {$_SESSION['address']['city']}</p>
+";
 
 sendEmail($user['email'], $subject, $body);
 
-// unset($_SESSION['basket']);
-// unset($_SESSION['address']);
-// header("location: ../summary.php");
+unset($_SESSION['basket']);
+unset($_SESSION['address']);
+header("location: ../summary.php");
 ?>
