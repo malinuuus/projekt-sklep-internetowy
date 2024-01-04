@@ -59,7 +59,7 @@ foreach ($products as $product) {
                 <div class="text">
                   <h5>{$product['name']} </h5>
                   <p>{$product['color']}</p>
-                  <p>{$product['price']}</p>
+                  <p>{$product['price']}</p> 
                 </div>
                 <div class="button">
                    <form action="scripts/addToBasket.php" method="post">
