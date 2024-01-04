@@ -1,10 +1,13 @@
+<?php
+require_once "../scripts/checkAuth.php";
+checkUser(false);
+?>
 <nav>
     <div class="logo-name">
         <div class="logo-image">
             <img src="images/logo.png" alt="">
         </div>
-
-        <span class="logo_name">CodingLab</span>
+        <span class="logo_name">METZ Shoes</span>
     </div>
 
     <div class="menu-items">

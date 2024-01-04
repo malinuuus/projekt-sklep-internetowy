@@ -1,3 +1,7 @@
+<?php
+require_once "../scripts/checkAuth.php";
+checkUser(false);
+?>
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
@@ -83,7 +87,10 @@ require_once "menu.php";
                     </div>
                 PRODUCT;
             }
+
+            echo '<hr>';
         }
+
         ?>
     </div>
 </section>

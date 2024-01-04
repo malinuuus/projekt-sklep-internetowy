@@ -9,5 +9,6 @@ foreach ($_POST as $key => $value) {
     }
 }
 
+$_SESSION['address'] = $_POST;
 header("location: ../payment.php");
 ?>

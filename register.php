@@ -101,5 +101,6 @@ if (isset($_SESSION["success"])) {
         </form>
     </div>
 </div>
+<script src="./js/closeAlert.js"></script>
 </body>
 </html>

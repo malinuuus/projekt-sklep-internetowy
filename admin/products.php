@@ -1,3 +1,7 @@
+<?php
+require_once "../scripts/checkAuth.php";
+checkUser(false);
+?>
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
@@ -13,10 +17,48 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
     <title>Admin Dashboard Panel</title>
+    <style>
+        .alert {
+            position: fixed;
+            top: -20px;
+            z-index: 2;
+            margin: 80px;
+            padding: 30px;
+        }
+
+        .alert-danger {
+            background: #e77676;
+        }
+
+        .alert-success {
+            background: #90ee90;
+        }
+    </style>
 </head>
 <body>
 <?php
 require_once "menu.php";
+if (isset($_SESSION["error"])) {
+    echo <<< ERROR
+       <div class="fixed-top alert alert-danger alert-dismissible m-3 my-5"> 
+           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+           <h5><i class="icon fas fa-ban"></i>Uwaga!</h5>
+           $_SESSION[error]
+       </div>
+    ERROR;
+    unset($_SESSION ["error"]);
+}
+
+if (isset($_SESSION["success"])) {
+    echo <<< ERROR
+       <div class="fixed-top alert alert-success alert-dismissible m-3"> 
+           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+           <h5><i class="icon fas fa-check"></i>Komunikat!</h5>
+           $_SESSION[success]
+       </div>
+    ERROR;
+    unset($_SESSION["success"]);
+}
 ?>
 
 <section class="dashboard">
@@ -35,11 +77,9 @@ require_once "menu.php";
             <div class="title">
                 <i class="uil uil-clock-three"></i>
                 <span class="text">Produkty</span>
-                <div class = "button">
-                    <form action="addProduct.php" method="post">
-                    <button>Dodaj</button>
-                </div>
-
+                <a href="product.php">
+                    <i class="uil uil-plus"></i>
+                </a>
             </div>
         </div>
 
@@ -65,8 +105,8 @@ require_once "menu.php";
                     </div>
                 </div>
                 <div class="options">
-                    <form action="#" method="post">
-                        <input type="hidden" name="product_id" value="{$product['id']}">
+                    <form action="product.php" method="get">
+                        <input type="hidden" name="id" value="{$product['id']}">
                         <button type="submit">
                             <i class="uil uil-edit"></i>
                             <span>Edytuj </span>
@@ -90,5 +130,6 @@ require_once "menu.php";
 </section>
 
 <script src="script.js"></script>
+<script src="../js/closeAlert.js"></script>
 </body>
 </html>

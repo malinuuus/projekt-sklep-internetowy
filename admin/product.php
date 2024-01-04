@@ -1,5 +1,17 @@
 <?php
+require_once "../scripts/dbConnect.php";
+require_once "../scripts/checkAuth.php";
+checkUser(false);
 
+$isEdit = isset($_GET['id']);
+
+if ($isEdit) {
+    $stmt = $pdo->prepare("SELECT * FROM products WHERE id = :id");
+    $stmt->execute([
+        'id' => $_GET['id']
+    ]);
+    $product = $stmt->fetch(PDO::FETCH_ASSOC);
+}
 ?>
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
@@ -34,19 +46,25 @@ require_once "menu.php";
         <!--<img src="images/profile.jpg" alt="">-->
     </div>
     <div class="dash-content">
-        <form action="../scripts/addProduct.php" method="post">
+        <h2>Szczegóły produktu</h2>
+        <form action="<?php echo $isEdit ? '../scripts/updateProduct.php' : '../scripts/addProduct.php' ?>" method="post">
+            <?php
+            if ($isEdit) {
+                echo "<input type='hidden' name='id' value='{$product['id']}'>";
+            }
+            ?>
+
             <div class="my-3">
-                <label for="color" class="form-label">Marka</label>
-                <select class="form-control" name="brand_id">
+                <label for="brand" class="form-label">Marka</label>
+                <select class="form-control" name="brand_id" id="brand">
                     <option value="" selected disabled>Wybierz markę</option>
                     <?php
-                    session_start();
-                    require_once "../scripts/dbConnect.php";
                     $stmt = $pdo->prepare("SELECT * FROM brands");
                     $stmt->execute();
                     $brands = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     foreach ($brands as $brand) {
-                        echo "<option value=$brand[id]>$brand[name]</option>";
+                        $selected = $isEdit && $brand['id'] == $product['brand_id'] ? 'selected' : '';
+                        echo "<option value=$brand[id] $selected>$brand[name]</option>";
                     }
                     ?>
                 </select>
@@ -54,27 +72,31 @@ require_once "menu.php";
 
             <div class="my-3">
                 <label for="name" class="form-label">Nazwa</label>
-                <input type="text" class="form-control" placeholder="Podaj nazwę" name="name" id="name">
+                <input type="text" class="form-control" placeholder="Podaj nazwę" name="name" id="name" value="<?php echo $isEdit ? $product['name'] : '' ?>">
             </div>
 
             <div class="my-3">
                 <label for="price" class="form-label">Cena</label>
-                <input type="text" class="form-control" placeholder="Podaj cenę" name="price" id="price">
+                <input type="text" class="form-control" placeholder="Podaj cenę" name="price" id="price" value="<?php echo $isEdit ? $product['price'] : '' ?>">
             </div>
-
+<!--
             <div class="my-3">
                 <label for="size" class="form-label">Rozmiar</label>
                 <input type="text" class="form-control" placeholder="Podaj rozmiar" name="size" id="size">
             </div>
-
+-->
             <div class="my-3">
                 <label for="color" class="form-label">Kolor</label>
-                <input type="text" class="form-control" placeholder="Podaj kolor" name="color" id="color">
+                <input type="text" class="form-control" placeholder="Podaj kolor" name="color" id="color" value="<?php echo $isEdit ? $product['color'] : '' ?>">
             </div>
 
             <div class="row my-3">
                 <div class="col">
-                    <button type="submit" class="btn btn-primary btn-block">Dodaj produkt</button>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <?php
+                        echo $isEdit ? "Edytuj produkt" : "Dodaj produkt";
+                        ?>
+                    </button>
                 </div>
             </div>
         </form>

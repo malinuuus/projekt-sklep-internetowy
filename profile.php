@@ -1,14 +1,21 @@
+<?php
+require_once "scripts/checkAuth.php";
+checkUser(true);
+?>
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>METZ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="style.css">
     <title>Mój profil</title>
+
 </head>
-<body>
+<body class="bg-dark hold-transition login-page text-light">
 <?php
 require_once "header.php";
 ?>
@@ -17,43 +24,28 @@ require_once "header.php";
 
 <?php
 
-if (isset($_SESSION['error'])) {
-    echo <<< ERROR
-        <div>
-            <p>{$_SESSION['error']}</p>
-        </div>
-    ERROR;
-    unset($_SESSION['error']);
-}
-if (isset($_SESSION['success'])) {
-    echo <<< ERROR
-        <div>
-            <p>{$_SESSION['success']}</p>
-        </div>
-    ERROR;
-    unset($_SESSION['success']);
-}
-
 require_once "scripts/dbConnect.php";
 
-$stmt = $pdo->prepare("SELECT * FROM users");
-$stmt->execute();
-$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $pdo->prepare("SELECT first_name, last_name, email FROM users WHERE id = :id");
 
-echo "<div class='products'>";
-foreach ($users as $user) {
+$stmt->execute([
+    'id' => $_SESSION['user']['id']
+]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if($user) {
     echo <<< USER
-            <a href="user.php?id=$user[id]" class="user">
+            <div class="user">
                 <div class="text">
-                  <h5>{$user['first_name']} </h5>
-                  <h5>{$user['last_name']} </h5>
-                  <h5>{$user['email']} </h5>
-                  <h5>{$user['password']} </h5>
+                <h2>Dane użytkownika</h2>
+                  <h5>Imię: {$user['first_name']} </h5>
+                  <h5>Nazwisko: {$user['last_name']} </h5>
+                  <h5>Adres email: {$user['email']} </h5>
                 </div>
-              </a>
+            </div>
         USER;
+
 }
-echo "</div>";
 
 ?>
 

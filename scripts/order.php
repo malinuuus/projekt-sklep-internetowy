@@ -1,13 +1,27 @@
 <?php
 session_start();
 require_once "dbConnect.php";
+require_once "mailer.php";
 
-$stmt = $pdo->prepare("INSERT INTO orders (user_id, status) VALUES (:userId, :status)");
+$stmt = $pdo->prepare("INSERT INTO address (city, country, street, number, postal_code, phone_number) VALUES (:city, :country, :street, :number, :postal_code, :phone_number)");
 $stmt->execute([
-    'userId' => $_SESSION['user_id'],
+    'city' => $_SESSION['address']['city'],
+    'country' => $_SESSION['address']['country'],
+    'street' => $_SESSION['address']['street'],
+    'number' => $_SESSION['address']['number'],
+    'postal_code' => $_SESSION['address']['postal_code'],
+    'phone_number' => $_SESSION['address']['phone_number']
+]);
+$addressId = $pdo->lastInsertId();
+
+$stmt = $pdo->prepare("INSERT INTO orders (user_id, address_id, status) VALUES (:userId, :addressId, :status)");
+$stmt->execute([
+    'userId' => $_SESSION['user']['id'],
+    'addressId' => $addressId,
     'status' => 'zapłacone'
 ]);
 $orderId = $pdo->lastInsertId();
+$products = [];
 
 foreach ($_SESSION['basket'] as $basketVariantId) {
     $stmt = $pdo->prepare("INSERT INTO variant_orders (variant_id, order_id, quantity) VALUES (:variantId, :orderId, :quantity)");
@@ -16,12 +30,42 @@ foreach ($_SESSION['basket'] as $basketVariantId) {
         'orderId' => $orderId,
         'quantity' => 1
     ]);
+
+    $stmt = $pdo->prepare("SELECT p.name, p.price, v.size FROM variants v INNER JOIN products p ON v.product_id = p.id WHERE v.id = :variantId");
+    $stmt->execute([
+        'variantId' => $basketVariantId
+    ]);
+    $product = $stmt->fetch(PDO::FETCH_ASSOC);
+    $products[] = $product;
 }
 
-print_r($_POST);
+$stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id");
+$stmt->execute([
+    'id' => $_SESSION['user']['id']
+]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+$subject = "Zamówienie nr: ".$orderId;
+$body = "
+    <p>Hej {$user['first_name']} {$user['last_name']}!</p>
+    <p>Przyjęto zamówienie nr: $orderId</p>
+    <table>
+";
 
+foreach ($products as $product) {
+    $body .= "
+        <tr>
+            <td>{$product['name']}</td>
+            <td>{$product['size']}</td>
+            <td>{$product['price']}</td>
+        </tr>
+    ";
+}
+$body .= "</table>";
 
-unset($_SESSION['basket']);
-header("location: ../summary.php");
+sendEmail($user['email'], $subject, $body);
+
+// unset($_SESSION['basket']);
+// unset($_SESSION['address']);
+// header("location: ../summary.php");
 ?>
