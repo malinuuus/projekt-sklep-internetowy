@@ -36,7 +36,7 @@ if ($error != 0) {
     exit();
 }
 
-require_once "scripts/dbConnect.php";
+require_once "dbConnect.php";
 
 $sql = "SELECT * FROM users WHERE email = :email";
 $stmt = $pdo->prepare($sql);

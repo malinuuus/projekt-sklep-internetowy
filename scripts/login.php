@@ -25,7 +25,10 @@ if ($stmt->rowCount() == 0) {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     if (password_verify($_POST["pass"], $user["password"])) {
 
-        $_SESSION["user_id"] = $user["id"];
+        $_SESSION["user"] = [
+            'id' => $user["id"],
+            'isAdmin' => $user['is_admin']
+        ];
 
         if ($user['is_admin']) {
             header("location: ../admin/index.php");

@@ -36,6 +36,8 @@ $btnActive = false;
 if (isset($_SESSION['basket']) && sizeof($_SESSION['basket']) > 0) {
     if (isset($_SESSION['user_id'])) {
         $btnActive = true;
+    }else{
+        echo "<p>Przed zakupem należy sie zalogować!</p>";
     }
 
     echo "<table class='products-table'>";

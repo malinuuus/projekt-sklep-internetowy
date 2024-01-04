@@ -1,3 +1,7 @@
+<?php
+require_once "../scripts/checkAuth.php";
+checkIfAdmin();
+?>
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">

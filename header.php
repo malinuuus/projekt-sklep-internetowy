@@ -13,7 +13,7 @@
             session_start();
         }
 
-        if (isset($_SESSION["user_id"])) {
+        if (isset($_SESSION["user"])) {
             echo "<a href='profile.php' class='nav-link px-2'>Moje konto</a>";
             echo "<a href='./scripts/logout.php' class='nav-link px-2'>Wyloguj się</a>";
         }else{

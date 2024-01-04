@@ -1,3 +1,7 @@
+<?php
+require_once "../scripts/checkAuth.php";
+checkIfAdmin();
+?>
 <nav>
     <div class="logo-name">
         <div class="logo-image">
